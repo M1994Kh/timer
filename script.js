@@ -1,8 +1,26 @@
 const btnStart=document.querySelector('.start');
 const btnStop=document.querySelector('.stop');
 const btnReset=document.querySelector('.reset');
+var range = document.querySelector('.inputRange');
+var field = document.getElementById('num1');
+
+range.addEventListener('input', function (e) {
+  field.value = e.target.value;
+});
+field.addEventListener('input', function (e) {
+  range.value = e.target.value;
+});
+
+function updateTextInput1(val) {
+    val = val > 300 ? 300 : val;
+    val = val < 0 ? 0 : val;
+    document.getElementById('range').value = val;
+    document.getElementById('num1').value = val;
+}
 
 let hrs=min=sec=ms=0,startTimer;
+hrs = Math.floor(val/60);
+min = val%60;
 
 btnStart.addEventListener('click',()=>{
 
@@ -10,18 +28,18 @@ btnStart.addEventListener('click',()=>{
   btnStop.classList.remove('stop-active');
 
   startTimer=setInterval(()=>{
-    ms++;//ms=ms+1;
-    if(ms==100){
-      sec++;
-      ms=0;
+    ms--;//ms=ms-1;
+    if(ms==0){
+      sec--;
+      ms=100;
     }
-    if(sec==60){
-      min++;
-      sec=0;
+    if(sec==0){
+      min--;
+      sec=59;
     }
-    if(min==60){
-      hrs++;
-      min=0;
+    if(min==0){
+      hrs--;
+      min=59;
     }
     updateDisplay();
   },10);
