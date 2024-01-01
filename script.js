@@ -20,7 +20,8 @@ function updateTextInput1(val) {
 document.getElementById('num1').value = val;
 let hrs=min=sec=ms=0,startTimer;
 hrs = Math.floor(val/60);
-min = val%60;
+// min = val%60;
+min = 5;
 
 btnStart.addEventListener('click',()=>{
 
